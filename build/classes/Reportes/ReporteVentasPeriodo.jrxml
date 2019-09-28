@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="340" pageHeight="700" whenNoDataType="AllSectionsNoDetail" columnWidth="300" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ef7118c-3e40-4dd1-b42b-d185d1dcfff7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaI" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaF" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT tblmedicamentos.grupofarmacologico, tblmedicamentos.nombre,SUM(tbldetalleventas.cantidad) AS cantidad,SUM(tbldetalleventas.cantidad*tbldetalleventas.preciounidad) AS total,sf_totalventaporperiodo($P{fechaI},$P{fechaF}) AS totalPeriodo
+FROM tbldetalleventas 
+INNER JOIN tblventas ON tblventas.idventa=tbldetalleventas.codventa
+INNER JOIN tblmedicamentos ON tblmedicamentos.idmedicamento=tbldetalleventas.codmedicamento
+WHERE tblventas.fechaventa BETWEEN $P{fechaI} AND $P{fechaF}
+GROUP BY tblmedicamentos.grupofarmacologico, tblmedicamentos.nombre;]]>
+	</queryString>
+	<field name="grupofarmacologico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double"/>
+	<field name="totalPeriodo" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<image>
+				<reportElement x="70" y="0" width="206" height="41" uuid="620071ea-f109-41c9-a923-41f441fe07e1"/>
+				<imageExpression><![CDATA["C:\\Users\\dehoy\\OneDrive\\Documentos\\NetBeansProjects\\farmacia\\src\\img\\drogueri.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="26" y="41" width="262" height="20" forecolor="#CC0000" uuid="0c6d09ad-8a1a-4566-af1a-76582f020b8e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE VENTAS POR PERIODO ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="156" y="61" width="47" height="20" uuid="e529326c-e50d-449f-a09c-f9aeacfeeb9b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="101" y="61" width="55" height="20" uuid="5025bc46-79d1-49ed-bb37-9974d9e629d2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pag N°:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="84" width="31" height="20" uuid="e951ed90-fa06-42b8-bdfd-aa9d85169804"/>
+				<text><![CDATA[---]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="45" y="83" width="100" height="20" uuid="fc2e0fc3-aa5d-48c7-800d-a94de627a7fa"/>
+				<textFieldExpression><![CDATA[$P{fechaI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="83" width="100" height="20" uuid="0187af68-3378-4410-8d83-2e9a533bb5f4"/>
+				<textFieldExpression><![CDATA[$P{fechaF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<line>
+				<reportElement x="-2" y="0" width="302" height="1" uuid="a2020c0e-dad8-43da-b7d3-491555d4c081"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement x="-2" y="0" width="302" height="20" forecolor="#FFFFFF" backcolor="#3399FF" uuid="b4216113-e359-4fdd-9a00-5fa360a3cd02"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="-2" y="-1" width="100" height="20" forecolor="#FFFFFF" uuid="e771a688-da69-4208-9dae-0a94f4c3c5dc"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDICAMENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="1" width="100" height="20" forecolor="#FFFFFF" uuid="25ed5edb-ed9f-48c6-b21a-87f77f983593"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<line>
+				<reportElement x="-2" y="0" width="302" height="1" uuid="ed08a822-d3ae-4506-9ba5-76201006dc84"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="1" y="0" width="100" height="20" forecolor="#0099CC" uuid="eb70bd78-2cff-4d56-94f6-6b900cac02b9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grupofarmacologico}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="41">
+			<staticText>
+				<reportElement x="-1" y="20" width="100" height="20" uuid="58d425d9-9c5f-441d-ae62-eb988e66dbb1"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-1" y="20" width="299" height="1" uuid="e88e5510-90cc-44a0-85e5-739362953fb9"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="-1" y="1" width="100" height="20" uuid="4bd4eb82-1053-48f6-a044-9e4ee6bf1fcd"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="200" y="1" width="100" height="20" uuid="732c35bc-dd89-49cd-8f06-3011020d9cc6"/>
+				<textElement>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="200" y="20" width="100" height="20" uuid="87d7a2c8-8ab4-414e-b5ce-3785ce3b8f27"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="299" height="1" uuid="015430a6-950a-4670-a4a6-277842dbc80d"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="48" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="8" width="301" height="20" uuid="767f8ff5-2ba7-44c1-b575-885191b3020b"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="8" width="100" height="20" uuid="4c3a5f60-3a7c-4585-a88e-ea303c5c4f55"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Ventas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="28" width="299" height="20" forecolor="#0099FF" uuid="a5e656cc-51cd-4205-8260-14d213390c41"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Desarrollado Por: GENESIS Software Confiables]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="0" width="301" height="1" uuid="a262e6c7-200e-43e9-90e9-73373e0217a2"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="203" y="8" width="100" height="20" uuid="899ac81c-2c20-47b1-b1b9-d43031a0631a"/>
+				<textFieldExpression><![CDATA[$F{totalPeriodo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

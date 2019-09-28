@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="340" pageHeight="700" whenNoDataType="AllSectionsNoDetail" columnWidth="300" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ef7118c-3e40-4dd1-b42b-d185d1dcfff7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaventa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT tblmedicamentos.nombre,SUM(tbldetalleventas.cantidad) AS cantidadtotal,SUM(tbldetalleventas.cantidad*tbldetalleventas.preciounidad) AS Totalventa,sf_totalventapordia($P{fechaventa}) as totalventadiaria
+FROM tbldetalleventas 
+INNER JOIN tblventas ON tblventas.idventa=tbldetalleventas.codventa
+INNER JOIN tblmedicamentos ON tbldetalleventas.codmedicamento=tblmedicamentos.idmedicamento
+WHERE tblventas.fechaventa=$P{fechaventa}
+GROUP BY tblmedicamentos.nombre
+ORDER BY tblmedicamentos.nombre,cantidadtotal,Totalventa;]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidadtotal" class="java.math.BigDecimal"/>
+	<field name="Totalventa" class="java.lang.Double"/>
+	<field name="totalventadiaria" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<image>
+				<reportElement x="70" y="0" width="206" height="41" uuid="620071ea-f109-41c9-a923-41f441fe07e1"/>
+				<imageExpression><![CDATA["C:\\Users\\dehoy\\OneDrive\\Documentos\\NetBeansProjects\\farmacia\\src\\img\\drogueri.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="70" y="61" width="112" height="18" uuid="70be8c9e-fb95-4722-bce8-0806a5334b24"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaventa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="76" y="41" width="154" height="20" forecolor="#CC0000" uuid="0c6d09ad-8a1a-4566-af1a-76582f020b8e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE VENTAS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="237" y="59" width="47" height="20" uuid="e529326c-e50d-449f-a09c-f9aeacfeeb9b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="182" y="59" width="55" height="20" uuid="5025bc46-79d1-49ed-bb37-9974d9e629d2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pag N°:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<line>
+				<reportElement x="-2" y="0" width="302" height="1" uuid="a2020c0e-dad8-43da-b7d3-491555d4c081"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement x="-2" y="0" width="302" height="20" forecolor="#FFFFFF" backcolor="#3399FF" uuid="b4216113-e359-4fdd-9a00-5fa360a3cd02"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="-2" y="-1" width="100" height="20" forecolor="#FFFFFF" uuid="e771a688-da69-4208-9dae-0a94f4c3c5dc"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDICAMENTOS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="21" width="301" height="1" uuid="25ec8dcb-1d32-4e3e-b694-03ca5338e3b9"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="200" y="1" width="100" height="20" forecolor="#FFFFFF" uuid="25ed5edb-ed9f-48c6-b21a-87f77f983593"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="100" height="20" uuid="2a707d10-41d5-4f99-97ca-6e1958b93d0a"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="0" width="100" height="20" uuid="4b922dcc-db3f-4527-a830-525bc0424fd6"/>
+				<textFieldExpression><![CDATA[$F{cantidadtotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="20" width="100" height="20" uuid="58d425d9-9c5f-441d-ae62-eb988e66dbb1"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="20" width="100" height="20" uuid="e13140b2-e162-4923-b56c-41ff29b117fe"/>
+				<textFieldExpression><![CDATA[$F{Totalventa}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="40" width="301" height="1" uuid="a262e6c7-200e-43e9-90e9-73373e0217a2"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="182" y="20" width="20" height="20" uuid="d033701c-204e-4d9d-a54a-2a2d72cf0988"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="48" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="8" width="301" height="20" uuid="767f8ff5-2ba7-44c1-b575-885191b3020b"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="202" y="8" width="100" height="20" uuid="e4cee4cc-8638-45e2-affa-2c317dfdf1be"/>
+				<textFieldExpression><![CDATA[$F{totalventadiaria}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="8" width="100" height="20" uuid="4c3a5f60-3a7c-4585-a88e-ea303c5c4f55"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Ventas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="28" width="299" height="20" forecolor="#0099FF" uuid="a5e656cc-51cd-4205-8260-14d213390c41"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Desarrollado Por: GENESIS Software Confiables]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="8" width="20" height="20" uuid="286f2020-c342-4fb9-ad25-3c57f33849e4"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
