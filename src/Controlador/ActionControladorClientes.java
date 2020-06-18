@@ -111,12 +111,12 @@ public void validarcampos(){
                 }else{
                     obtenerDatosGUI();
                     if(operaciones.guardar(cedula, nombre, telefonos, direccion)){
-                    util.informar(this.vistaCliente,"Datos Guardados Correctamente",vistaCliente.getTitle());
-                    vistaCliente.jtCedula.setText("");
-                    vistaCliente.jtNombres.setText("");
-                    vistaCliente.jtTelefonos.setText("");
-                    vistaCliente.jtDireccion.setText("");
-                    operaciones.llenarTabla(vistaCliente.jtClientes);
+                        util.informar(this.vistaCliente,"Datos Guardados Correctamente",vistaCliente.getTitle());
+                        vistaCliente.jtCedula.setText("");
+                        vistaCliente.jtNombres.setText("");
+                        vistaCliente.jtTelefonos.setText("");
+                        vistaCliente.jtDireccion.setText("");
+                        operaciones.llenarTabla(vistaCliente.jtClientes);
                     }else{
                       util.advertir(this.vistaCliente,"No Se Guardaron Los Datos",vistaCliente.getTitle());
                     }
