@@ -35,11 +35,11 @@ public class KeyControladorVendedor implements KeyListener{
             palabra2=vtVendedor.jtApellidos.getText().toUpperCase();
             int p1=palabra1.indexOf(" ");
             int p2=palabra2.indexOf(" ");
-            if(p1==-1&&p2==-1){
-              concadenar=palabra1.substring(0,palabra1.length())+palabra2.substring(0,palabra2.length());
+            if(p1 == -1 && p2 == -1){
+              concadenar = palabra1.substring(0,palabra1.length())+palabra2.substring(0,palabra2.length());
               vtVendedor.txtUsuario.setText(concadenar+"@GENESIS.COM"); 
             }else{
-              concadenar=palabra1.substring(0,palabra1.indexOf(" "))+palabra2.substring(0,palabra2.indexOf(" "));
+              concadenar = palabra1.substring(0,palabra1.indexOf(" "))+palabra2.substring(0,palabra2.indexOf(" "));
               vtVendedor.txtUsuario.setText(concadenar+"@GENESIS.COM");   
             }
         }

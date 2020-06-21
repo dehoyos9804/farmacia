@@ -6,6 +6,7 @@
 package Modelo;
 
 import Reportes.AstractJasperReport;
+import java.io.File;
 
 /**
  *
@@ -13,15 +14,17 @@ import Reportes.AstractJasperReport;
  */
 public class OperacionesVentaPeriodo {
     private final conectorBD conector=new conectorBD();
+    private File ruta_absoluta;
     
     public OperacionesVentaPeriodo(){
+        ruta_absoluta = new File("");
         conector.getconecction();
     }
     
     public void generarReporteVentaPeriodo(String FechaInicial,String FechaFinal){
         try{
             if(conector.conectar()){
-                AstractJasperReport.crearReportePorPeriodo(conector.getconecction(),"C:\\Users\\dehoy\\OneDrive\\Documentos\\NetBeansProjects\\farmacia\\src\\Reportes\\ReporteVentasPeriodo.jasper", FechaFinal, FechaFinal);
+                AstractJasperReport.crearReportePorPeriodo(conector.getconecction(),ruta_absoluta.getAbsolutePath() + "src\\Reportes\\ReporteVentasPeriodo.jasper", FechaFinal, FechaFinal);
             }else{
                 System.out.println("Error Al Conectarse A BD");
             }

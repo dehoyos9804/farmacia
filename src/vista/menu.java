@@ -50,7 +50,6 @@ public class menu extends javax.swing.JFrame {
         String fechahora;
         Calendar cal=Calendar.getInstance();
         fechahora=cal.get(Calendar.DATE)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR)+"  "+cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE)+":"+cal.get(Calendar.SECOND);
-        this.fechahora.setForeground(Color.WHITE);
         this.fechahora.setText(fechahora);
         //----------------------------------------------------------------------
         //Cerrar con tecla esc
@@ -72,8 +71,8 @@ public class menu extends javax.swing.JFrame {
 
         fechahora = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JLabel();
-        jLabelFondo = new javax.swing.JLabel();
         txtoculto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMSalir = new javax.swing.JMenuItem();
@@ -115,23 +114,32 @@ public class menu extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CAPSULE CORP");
+        setTitle("GENESIS CORP");
+        setBackground(new java.awt.Color(255, 255, 255));
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fechahora.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        getContentPane().add(fechahora, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, 160, 20));
+        fechahora.setForeground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(fechahora, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, 180, 30));
 
         txtUsuario.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 600, 260, 30));
-
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.jpg"))); // NOI18N
-        jLabelFondo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1360, 670));
         getContentPane().add(txtoculto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1194, 40, 110, 20));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logoempresa.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 650));
+
+        jMenuBar2.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuBar2.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuBar2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jMenuBar2.setMargin(new java.awt.Insets(1, 1, 1, 1));
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
         jMenu3.setText("Inicio");
+        jMenu3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jMSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, java.awt.event.InputEvent.CTRL_MASK));
         jMSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir.png"))); // NOI18N
@@ -155,7 +163,9 @@ public class menu extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu3);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/registro.png"))); // NOI18N
         jMenu4.setText("Registrar");
+        jMenu4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jmMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/medicamento.png"))); // NOI18N
         jmMedicamento.setText("Registrar Medicamento");
@@ -208,7 +218,9 @@ public class menu extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu4);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/generar.png"))); // NOI18N
         jMenu1.setText("Generar");
+        jMenu1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jmVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ventas.png"))); // NOI18N
         jmVentas.setText("Dispensación De Medicamentos");
@@ -281,7 +293,9 @@ public class menu extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu1);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contactos.png"))); // NOI18N
         jMenu5.setText("Contáctanos");
+        jMenu5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contacto1.png"))); // NOI18N
         jMenuItem7.setText("información");
@@ -294,7 +308,9 @@ public class menu extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu5);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mantenimiento.png"))); // NOI18N
         jMenu2.setText("Mantenimiento");
+        jMenu2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mantenimeinto.png"))); // NOI18N
         jMenu9.setText("Configuraciones");
@@ -320,10 +336,14 @@ public class menu extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu2);
 
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/consultante.png"))); // NOI18N
         jMenu8.setText("Consultas");
+        jMenu8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jMenuBar2.add(jMenu8);
 
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ayuda.png"))); // NOI18N
         jMenu6.setText("Ayuda");
+        jMenu6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ayuda1.png"))); // NOI18N
         jMenuItem8.setText("uso del sistema");
@@ -399,7 +419,7 @@ public class menu extends javax.swing.JFrame {
 
     private void ReporteVentasDiariasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteVentasDiariasActionPerformed
         ReporteVentasDiarias vtnreporte=new ReporteVentasDiarias();
-        this.jLabelFondo.add(vtnreporte);
+        this.jLabel1.add(vtnreporte);
         vtnreporte.setLocation(600, 30);
         vtnreporte.show();
     }//GEN-LAST:event_ReporteVentasDiariasActionPerformed
@@ -415,18 +435,19 @@ public class menu extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         InventarioInicial InventarioI=new InventarioInicial();
-        jLabelFondo.add(InventarioI);
+        this.jLabel1.add(InventarioI);
         InventarioI.setLocation(400, 60);
         OperacionesInventarioInicial operacion=new OperacionesInventarioInicial();
-        ActionControladorInventarioI actiom=new ActionControladorInventarioI(InventarioI,operacion);
-        KeyControladorInventarioI key=new KeyControladorInventarioI(InventarioI,operacion);
+        ActionControladorInventarioI actiom = new ActionControladorInventarioI(InventarioI,operacion);
+        KeyControladorInventarioI key = new KeyControladorInventarioI(InventarioI,operacion);
         InventarioI.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         Proveedores vtProveedor=new Proveedores();
         OperacionesProveedores operaciones=new OperacionesProveedores();
-        jLabelFondo.add(vtProveedor);
+        this.jLabel1.add(vtProveedor);
         vtProveedor.setLocation(400, 60);
         ActionControladorProveedor contro=new ActionControladorProveedor(vtProveedor,operaciones);
         vtProveedor.setVisible(true);
@@ -435,7 +456,7 @@ public class menu extends javax.swing.JFrame {
     private void ReporteVentaPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteVentaPeriodoActionPerformed
         ReporteVentasPorPeriodo vtPeriodo=new ReporteVentasPorPeriodo();
         OperacionesVentaPeriodo operaciones=new OperacionesVentaPeriodo();
-        jLabelFondo.add(vtPeriodo);
+        this.jLabel1.add(vtPeriodo);
         vtPeriodo.setLocation(400, 60);
         ActionControladorVentaPeriodo contro=new ActionControladorVentaPeriodo(vtPeriodo,operaciones);
         vtPeriodo.setVisible(true);
@@ -480,7 +501,7 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem ReporteVentaPeriodo;
     private javax.swing.JMenuItem ReporteVentasDiarias;
     private javax.swing.JLabel fechahora;
-    private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMSalir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

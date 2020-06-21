@@ -11,7 +11,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT tblmedicamentos.grupofarmacologico, tblmedicamentos.nombre,SUM(tbldetalleventas.cantidad) AS cantidad,SUM(tbldetalleventas.cantidad*tbldetalleventas.preciounidad) AS total,sf_totalventaporperiodo($P{fechaI},$P{fechaF}) AS totalPeriodo
-FROM tbldetalleventas 
+FROM tbldetalleventas
 INNER JOIN tblventas ON tblventas.idventa=tbldetalleventas.codventa
 INNER JOIN tblmedicamentos ON tblmedicamentos.idmedicamento=tbldetalleventas.codmedicamento
 WHERE tblventas.fechaventa BETWEEN $P{fechaI} AND $P{fechaF}

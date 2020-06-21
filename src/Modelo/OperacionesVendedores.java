@@ -46,7 +46,7 @@ public boolean guardar(int cc,String nombres,String apellidos,String cargo,Strin
     return estado;
 }
 
-public boolean buscar(String cec,JTextField jtCc,JTextField jtNombres,JTextField jtApellidos,JTextField jtCargo,JTextField jtTelefonos,JDateChooser jdFechaNacimiento,JTextField jtDireccion,JTextField jtCorreoElectronico,JLabel lblfoto,JComboBox comboTipoUsuario,JTextField txtUsuario,JPasswordField txtContraseña,JPasswordField txtComprobarContraseña){
+public boolean buscar(String cec,JTextField jtCc,JTextField jtNombres,JTextField jtApellidos,JTextField jtCargo,JTextField jtTelefonos,JDateChooser jdFechaNacimiento,JTextField jtDireccion,JTextField jtCorreoElectronico,JLabel lblfoto,JComboBox comboTipoUsuario,JTextField txtUsuario,JPasswordField txtContraseña,JPasswordField txtComprobarContraseña, String ruta_absoluta){
     boolean estado=false;
     ImageIcon foto;
     //InputStream is;
@@ -71,8 +71,8 @@ public boolean buscar(String cec,JTextField jtCc,JTextField jtNombres,JTextField
                
                is=resultado.getString(12);
                //BufferedImage bi=ImageIO.read(is);
-               foto=new ImageIcon(is);
-               Image img=foto.getImage();
+               foto = new ImageIcon(ruta_absoluta + "\\" + is);
+               Image img = foto.getImage();
                Image newimg=img.getScaledInstance(120,105,Image.SCALE_DEFAULT);
                ImageIcon newicon=new ImageIcon(newimg);
                lblfoto.setIcon(newicon);

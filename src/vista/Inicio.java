@@ -117,7 +117,7 @@ Icon modificarImagen;
         getContentPane().add(btsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 30, 30));
 
         jLabelusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
-        getContentPane().add(jLabelusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 240, 260));
+        getContentPane().add(jLabelusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 250, 260));
 
         jLabelNombre.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         jLabelNombre.setForeground(new java.awt.Color(255, 255, 255));

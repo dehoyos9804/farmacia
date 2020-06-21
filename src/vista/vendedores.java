@@ -12,6 +12,7 @@ import java.awt.KeyEventPostProcessor;
 import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -23,7 +24,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Aldair
  */
 public class vendedores extends javax.swing.JFrame {
-        String concadenar;
+    String concadenar;
+    File ruta_absoluta;
     /**
      * Creates new form vendedores
      */
@@ -33,7 +35,9 @@ public class vendedores extends javax.swing.JFrame {
         OperacionesVendedores operaciones=new OperacionesVendedores();
         operaciones.llenarTabla(jTableRegistro);
         
-         KeyboardFocusManager kb=KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        ruta_absoluta = new File("");
+        
+        KeyboardFocusManager kb=KeyboardFocusManager.getCurrentKeyboardFocusManager();
         kb.addKeyEventPostProcessor(new KeyEventPostProcessor(){
             public boolean postProcessKeyEvent(KeyEvent e){
                 if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
@@ -50,9 +54,10 @@ public class vendedores extends javax.swing.JFrame {
         jButtonEliminar.setToolTipText("Eliminar Datos");
         jbatras.setToolTipText("Salir");
         btnBuscarImagen.setToolTipText("Subir Foto");
+        
         //imagen por defecto
-        ImageIcon defec=new ImageIcon(getClass().getResource("/img/defecto.jpg"));
-        ImageIcon icono=new ImageIcon(defec.getImage().getScaledInstance(Foto.getWidth(),Foto.getHeight(),Image.SCALE_DEFAULT));
+        ImageIcon defec=new ImageIcon(ruta_absoluta.getAbsolutePath() + "\\recursos\\vendedores\\defecto.jpg");
+        ImageIcon icono = new ImageIcon(defec.getImage().getScaledInstance(120, 105, Image.SCALE_DEFAULT));
         Foto.setIcon(icono);
     }
 

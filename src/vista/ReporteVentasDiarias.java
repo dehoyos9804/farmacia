@@ -11,6 +11,7 @@ import Reportes.AstractJasperReport;
 import java.awt.KeyEventPostProcessor;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -19,15 +20,17 @@ import java.util.Date;
  */
 public class ReporteVentasDiarias extends javax.swing.JInternalFrame {
 
+    File ruta_absoluta;
     /**
      * Creates new form ReporteVentasDiarias
      */
     public ReporteVentasDiarias() {
+        ruta_absoluta = new File("");
         initComponents();
-        KeyboardFocusManager kb=KeyboardFocusManager.getCurrentKeyboardFocusManager();
-        kb.addKeyEventPostProcessor(new KeyEventPostProcessor(){
-            public boolean postProcessKeyEvent(KeyEvent e){
-                if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+        KeyboardFocusManager kb = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        kb.addKeyEventPostProcessor(new KeyEventPostProcessor() {
+            public boolean postProcessKeyEvent(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     dispose();
                     return true;
                 }
@@ -77,7 +80,7 @@ public class ReporteVentasDiarias extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarReporteActionPerformed
-        String fechaventa=util.aFechaMYSQL(jdFecha.getDate());
+        String fechaventa = util.aFechaMYSQL(jdFecha.getDate());
         generarReporte(fechaventa);
         AstractJasperReport.ejecutarReporte();
     }//GEN-LAST:event_jButtonGenerarReporteActionPerformed
@@ -88,17 +91,18 @@ public class ReporteVentasDiarias extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private com.toedter.calendar.JDateChooser jdFecha;
     // End of variables declaration//GEN-END:variables
-private final conectorBD conector= new conectorBD();
-private void generarReporte(String fecha){
-       try{
-          if(conector.conectar()){
-              AstractJasperReport.creaReporteVentaDiaria(conector.getconecction(),"C:\\Users\\dehoy\\OneDrive\\Documentos\\NetBeansProjects\\farmacia\\src\\Reportes\\VentasDiarias.jasper",fecha);
-          }else{
-              System.out.print("Error Al Conectarse Con BD");
-          } 
-       }catch(Exception e){
-         System.out.println("Error...");
-         System.err.println(e.getMessage());
-       }
+private final conectorBD conector = new conectorBD();
+
+    private void generarReporte(String fecha) {
+        try {
+            if (conector.conectar()) {
+                AstractJasperReport.creaReporteVentaDiaria(conector.getconecction(), ruta_absoluta.getAbsolutePath() + "\\src\\Reportes\\VentasDiarias.jasper", fecha);
+            } else {
+                System.out.print("Error Al Conectarse Con BD");
+            }
+        } catch (Exception e) {
+            System.out.println("Error...");
+            System.err.println(e.getMessage());
+        }
     }
 }
