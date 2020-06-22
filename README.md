@@ -24,3 +24,6 @@ Al iniciar el proyecto, la primera ventana será la siguiente:
 <img src="https://github.com/dehoyos9804/farmacia/blob/master/recursos/datos/dispensacion.PNG" style="zoom:30%;" /> <img src="https://github.com/dehoyos9804/farmacia/blob/master/recursos/datos/recepcion.PNG" style="zoom:40%;" />
 
 ## Contribuidores
+
+<img src="https://avatars2.githubusercontent.com/u/54456724?s=400&u=501d71fea055021abca9794251ffb5edea933a2c&v=4" style="border-radius:50%; zoom:10%;" />  
+
